@@ -1,0 +1,31 @@
+----DC CONFIG----
+
+
+<localfile>
+  <location>Security</location>
+  <log_format>eventchannel</log_format>
+</localfile>
+
+<localfile>
+  <location>Microsoft-Windows-Sysmon/Operational</location>
+  <log_format>eventchannel</log_format>
+</localfile>
+
+<localfile>
+  <location>System</location>
+  <log_format>eventchannel</log_format>
+</localfile>
+
+<localfile>
+  <location>Application</location>
+  <log_format>eventchannel</log_format>
+</localfile>
+
+----WAZUH MANGER----
+
+<global>
+  <jsonout_output>yes</jsonout_output>
+  <alerts_log>yes</alerts_log>
+  <logall>yes</logall>
+  <logall_json>yes</logall_json>
+</global>

@@ -1,0 +1,163 @@
+<group name="windows,sysmon,attack_lab">
+
+    <rule id="100100" level="8">
+        <if_group>windows</if_group>
+        <field name="win.system.eventID">4624</field>
+        <field name="win.eventdata.LogonType">3|10</field>
+        <description>Remote authentication detected (Possible Evil-WinRM)</description>
+        <mitre>
+            <id>T1021.006</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100101" level="15">
+        <if_group>windows</if_group>
+        <field name="win.system.eventID">4728</field>
+        <description>User added to privileged security group</description>
+        <mitre>
+            <id>T1098</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100102" level="12">
+        <if_group>windows</if_group>
+        <field name="win.system.eventID">4724</field>
+        <description>Password reset detected</description>
+        <mitre>
+            <id>T1098</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100103" level="14">
+        <if_group>windows</if_group>
+        <field name="win.system.eventID">4624</field>
+        <field name="win.eventdata.AuthenticationPackageName">NTLM</field>
+        <description>Possible Pass-the-Hash authentication</description>
+        <mitre>
+            <id>T1550.002</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100104" level="15">
+        <if_group>windows</if_group>
+        <field name="win.system.eventID">7045</field>
+        <description>New Windows Service Installed (Possible PsExec)</description>
+        <mitre>
+            <id>T1569.002</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100105" level="10">
+        <if_group>windows</if_group>
+        <field name="win.system.eventID">7036</field>
+        <match>Remote Registry</match>
+        <description>RemoteRegistry service started</description>
+        <mitre>
+            <id>T1003</id>
+        </mitre>
+    </rule>
+
+ 
+    <rule id="100106" level="8">
+        <if_group>sysmon_event1</if_group>
+        <match>powershell.exe</match>
+        <description>PowerShell execution detected</description>
+        <mitre>
+            <id>T1059.001</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100107" level="7">
+        <if_group>sysmon_event1</if_group>
+        <match>cmd.exe</match>
+        <description>Command Prompt execution detected</description>
+        <mitre>
+            <id>T1059.003</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100108" level="15">
+        <if_group>windows</if_group>
+        <field name="win.system.eventID">4662</field>
+        <match>Replicating Directory Changes</match>
+        <description>Possible DCSync attack</description>
+        <mitre>
+            <id>T1003.006</id>
+        </mitre>
+    </rule>
+
+    <rule id="100109" level="15">
+        <if_group>windows</if_group>
+
+        <field name="win.system.eventID">11</field>
+
+        <match>ntds.dit</match>
+
+        <description>NTDS.DIT file accessed</description>
+
+        <mitre>
+            <id>T1003.003</id>
+        </mitre>
+    </rule>
+
+    <rule id="100110" level="15">
+        <if_group>windows</if_group>
+
+        <field name="win.system.eventID">10</field>
+
+        <match>lsass.exe</match>
+
+        <description>Possible LSASS credential dump</description>
+
+        <mitre>
+            <id>T1003.001</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100111" level="8">
+        <if_group>sysmon_event1</if_group>
+        <match>SharpHound</match>
+        <description>BloodHound collector executed</description>
+        <mitre>
+            <id>T1087</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100112" level="12">
+        <if_group>windows</if_group>
+        <field name="win.system.eventID">4769</field>
+        <description>Kerberos Service Ticket Requested (Possible Kerberoasting)</description>
+        <mitre>
+            <id>T1558.003</id>
+        </mitre>
+    </rule>
+
+    <rule id="100113" level="12">
+        <if_group>sysmon_event1</if_group>
+        <match>WmiPrvSE.exe</match>
+        <description>Possible WMI Remote Execution</description>
+        <mitre>
+            <id>T1047</id>
+        </mitre>
+    </rule>
+
+
+    <rule id="100114" level="12">
+        <if_group>sysmon_event1</if_group>
+        <match>services.exe</match>
+        <description>Possible SMBExec execution</description>
+        <mitre>
+            <id>T1021.002</id>
+        </mitre>
+    </rule>
+
+</group>
